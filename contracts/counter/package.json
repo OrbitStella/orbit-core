@@ -1,0 +1,15 @@
+{
+  "name": "@orbit-core/counter-contract",
+  "version": "1.0.0",
+  "description": "Counter smart contract for Soroban",
+  "private": true,
+  "scripts": {
+    "build": "cargo build --target wasm32-unknown-unknown --release",
+    "test": "cargo test",
+    "clean": "cargo clean",
+    "wasm": "wasm-opt -Oz target/wasm32-unknown-unknown/release/counter_contract.wasm -o counter_contract.wasm"
+  },
+  "devDependencies": {
+    "typescript": "workspace:*"
+  }
+}

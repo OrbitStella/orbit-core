@@ -1,0 +1,22 @@
+{
+  "name": "@orbit-core/eslint-config",
+  "version": "1.0.0",
+  "description": "ESLint configuration for Orbit Core projects",
+  "main": "./index.js",
+  "files": [
+    "index.js"
+  ],
+  "scripts": {
+    "clean": "echo \"Nothing to clean\"",
+    "test": "echo \"No tests yet\""
+  },
+  "dependencies": {
+    "eslint": "^8.56.0",
+    "@typescript-eslint/eslint-plugin": "^6.19.1",
+    "@typescript-eslint/parser": "^6.19.1",
+    "eslint-config-prettier": "^9.1.0"
+  },
+  "peerDependencies": {
+    "eslint": ">=8.0.0"
+  }
+}

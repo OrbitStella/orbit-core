@@ -1,0 +1,17 @@
+{
+  "name": "@orbit-core/contracts",
+  "version": "1.0.0",
+  "description": "Soroban smart contracts for Orbit Core",
+  "private": true,
+  "scripts": {
+    "build": "pnpm -r build",
+    "test": "pnpm -r test",
+    "clean": "pnpm -r clean"
+  },
+  "devDependencies": {
+    "typescript": "workspace:*"
+  },
+  "workspaces": [
+    "counter"
+  ]
+}

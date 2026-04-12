@@ -1,0 +1,27 @@
+#!/usr/bin/env sh
+if [ -z "$husky_skip_init" ]; then
+  debug () {
+    if [ "$HUSKY_DEBUG" = "1" ]; then
+      echo "$@"
+    fi
+  }
+
+  readonly hook_name="$(basename "$0")"
+  debug "starting $hook_name..."
+
+  if [ "$HUSKY" = "0" ]; then
+    debug "HUSKY=0, skip hook"
+    exit 0
+  fi
+
+  export readonly husky_skip_init=1
+  sh -e "$0" "$@"
+  exitCode="$?"
+
+  if [ $exitCode != 0 ]; then
+    echo "$hook_name hook failed with exit code $exitCode"
+    exit $exitCode
+  fi
+
+  exit 0
+fi

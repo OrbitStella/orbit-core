@@ -1,0 +1,165 @@
+# GitHub Labels Configuration for Orbit Core
+
+# Priority Labels
+- name: priority/high
+  color: d73a4a
+  description: High priority issues and pull requests
+
+- name: priority/medium
+  color: fb850e
+  description: Medium priority issues and pull requests
+
+- name: priority/low
+  color: 7c3aed
+  description: Low priority issues and pull requests
+
+# Difficulty Labels
+- name: difficulty/beginner
+  color: 22c55e
+  description: Good for beginners, 1-2 hours
+
+- name: difficulty/intermediate
+  color: eab308
+  description: Requires some experience, 2-4 hours
+
+- name: difficulty/advanced
+  color: f97316
+  description: Requires significant experience, 4+ hours
+
+# Type Labels
+- name: bug
+  color: dc3545
+  description: Something isn't working as expected
+
+- name: enhancement
+  color: 28a745
+  description: New feature or improvement
+
+- name: documentation
+  color: 007bff
+  description: Improvements or additions to documentation
+
+- name: question
+  color: 6f42c1
+  description: General question or discussion
+
+- name: maintenance
+  color: 6c757d
+  description: Maintenance tasks, dependencies, refactoring
+
+# Component Labels
+- name: sdk
+  color: 0366d6
+  description: Related to the Orbit SDK
+
+- name: cli
+  color: 5319e7
+  description: Related to the CLI tool
+
+- name: contracts
+  color: 0891b2
+  description: Related to Soroban contracts
+
+- name: frontend
+  color: 0ea5e9
+  description: Related to the web application
+
+- name: tooling
+  color: 0d9488
+  description: Related to development tools and infrastructure
+
+# Wave Program Labels
+- name: wave
+  color: 8b5cf6
+  description: Stellar Wave program related
+
+- name: good first issue
+  color: 10b981
+  description: Good for newcomers to start with
+
+- name: wave/beginner
+  color: 22c55e
+  description: Wave beginner task (1-2 hours)
+
+- name: wave/intermediate
+  color: eab308
+  description: Wave intermediate task (2-4 hours)
+
+- name: wave/advanced
+  color: f97316
+  description: Wave advanced task (4+ hours)
+
+# Status Labels
+- name: status/help-wanted
+  color: 008672
+  description: Community help is needed
+
+- name: status/blocked
+  color: b91c1c
+  description: Issue is blocked by something else
+
+- name: status/duplicate
+  color: 6b7280
+  description: Duplicate of another issue
+
+- name: status/wontfix
+  color: 6b7280
+  description: Issue will not be fixed
+
+- name: status/in-progress
+  color: 0ea5e9
+  description: Currently being worked on
+
+- name: status/ready-for-review
+  color: 8b5cf6
+  description: Ready for code review
+
+- name: status/needs-more-info
+  color: f59e0b
+  description: More information is needed
+
+# Size Labels
+- name: size/XS
+  color: 94a3b8
+  description: Tiny change (0-10 lines)
+
+- name: size/S
+  color: 94a3b8
+  description: Small change (10-30 lines)
+
+- name: size/M
+  color: 94a3b8
+  description: Medium change (30-100 lines)
+
+- name: size/L
+  color: 94a3b8
+  description: Large change (100-500 lines)
+
+- name: size/XL
+  color: 94a3b8
+  description: Extra large change (500+ lines)
+
+# Special Labels
+- name: security
+  color: b91c1c
+  description: Security related issues
+
+- name: performance
+  color: a855f7
+  description: Performance related issues
+
+- name: breaking-change
+  color: dc2626
+  description: Changes that break existing functionality
+
+- name: dependencies
+  color: 0891b2
+  description: Related to package dependencies
+
+- name: testing
+  color: 059669
+  description: Related to testing and test coverage
+
+- name: examples
+  color: 7c3aed
+  description: Related to code examples and demos

@@ -1,0 +1,69 @@
+{
+  "name": "orbit-core",
+  "version": "1.0.0",
+  "description": "A production-ready monorepo for Orbit Core applications and packages",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=18.0.0",
+    "pnpm": ">=8.0.0"
+  },
+  "packageManager": "pnpm@8.15.0",
+  "scripts": {
+    "setup": "pnpm install && pnpm prepare && pnpm build",
+    "build": "pnpm -r build",
+    "build:contract": "cd contracts/counter && cargo build --target wasm32-unknown-unknown --release",
+    "dev": "pnpm -r dev",
+    "dev:web": "pnpm --filter \"@orbit-core/web\" dev",
+    "dev:contract": "cd contracts/counter && cargo test",
+    "lint": "eslint . --ext .ts,.tsx,.js,.jsx",
+    "lint:fix": "eslint . --ext .ts,.tsx,.js,.jsx --fix",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "typecheck": "tsc --noEmit",
+    "clean": "pnpm -r clean",
+    "clean:all": "pnpm clean && rm -rf coverage/ node_modules/.cache",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:coverage": "vitest run --coverage",
+    "test:ui": "vitest --ui",
+    "test:contract": "cd contracts/counter && cargo test",
+    "deploy:contract": "pnpm build:contract && orbit deploy --wasm contracts/counter/target/wasm32-unknown-unknown/release/counter_contract.wasm --key $CONTRACT_KEY --network testnet",
+    "deploy:all": "pnpm build && pnpm test && pnpm build:contract && pnpm deploy:contract",
+    "status": "echo 'Project Status:' && echo 'Packages: SDK, CLI, Web, Contract' && echo 'Node: $(node --version)' && echo 'pnpm: $(pnpm --version)'",
+    "doctor": "echo 'Checking environment...' && node --version && pnpm --version && rustc --version",
+    "prepare": "husky install"
+  },
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^6.19.1",
+    "@typescript-eslint/parser": "^6.19.1",
+    "@vitest/coverage-v8": "^1.2.0",
+    "@vitest/ui": "^1.2.0",
+    "eslint": "^8.56.0",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-prettier": "^5.1.3",
+    "husky": "^8.0.3",
+    "lint-staged": "^15.2.0",
+    "prettier": "^3.2.4",
+    "typescript": "^5.3.3",
+    "vitest": "^1.2.0"
+  },
+  "lint-staged": {
+    "*.{js,jsx,ts,tsx}": [
+      "eslint --fix",
+      "prettier --write"
+    ],
+    "*.{json,md,yml,yaml}": [
+      "prettier --write"
+    ],
+    "*.rs": [
+      "rustfmt"
+    ]
+  },
+  "workspaces": [
+    "apps/*",
+    "packages/*",
+    "contracts/*",
+    "tooling/*"
+  ]
+}
