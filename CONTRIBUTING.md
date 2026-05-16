@@ -421,31 +421,6 @@ Brief description of changes
 ### Project Maintainers
 
 - Create an issue for questions
-- Tag maintainainers for urgent issues
-- Join our Discord community
+- Tag maintainers for urgent issues
 
-## Stellar Wave Program
-
-This project participates in the Stellar Wave program! 
-
-### Wave Contributors
-
-- Look for issues labeled `good first issue` and `wave`
-- Start with smaller issues to get familiar
-- Join the Wave Discord channel
-- Attend Wave office hours
-
-### Wave Recognition
-
-- Contributors are recognized in our README
-- Top contributors get special roles
-- Wave completion certificates available
-
-### Wave Support
-
-- Dedicated mentorship available
-- Weekly office hours
-- Priority issue resolution
-- Code review assistance
-
-Thank you for contributing to Orbit Core and the Stellar ecosystem! :rocket:
+Thank you for contributing to Orbit Core and the Stellar ecosystem!
