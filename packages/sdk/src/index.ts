@@ -447,3 +447,6 @@ export { NETWORK_PRESETS, getNetworkConfig, listAvailableNetworks } from './netw
 
 // Export fee estimation utilities
 export { estimateTransactionFee, calculateOptimalFee, validateFee, type FeeEstimate } from './fees';
+
+// Export validation utilities
+export { validateMethodCall, validateContractSpec, type ValidationResult, type MethodCall } from './validation';
