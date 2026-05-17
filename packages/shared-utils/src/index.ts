@@ -167,3 +167,15 @@ export function getEnvVar(
 
 // Export performance utilities
 export { MemoizeCache, memoize, batch, debounceImmediate, throttle } from './performance';
+
+// Export security utilities
+export { 
+  sha256, 
+  generateToken, 
+  sanitizeInput, 
+  validatePublicKey, 
+  validateSecretKey, 
+  maskSensitiveData, 
+  hasSecurityRisks,
+  RateLimiter 
+} from './security';
