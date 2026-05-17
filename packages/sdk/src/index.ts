@@ -412,3 +412,6 @@ export {
   formatErrorForUser,
   getErrorSuggestion
 } from './errors';
+
+// Export retry utility
+export { withRetry, type RetryOptions } from './retry';
