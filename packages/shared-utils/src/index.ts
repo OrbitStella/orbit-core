@@ -164,3 +164,6 @@ export function getEnvVar(
 ): string {
   return env[name] ?? defaultValue ?? '';
 }
+
+// Export performance utilities
+export { MemoizeCache, memoize, batch, debounceImmediate, throttle } from './performance';
