@@ -441,3 +441,6 @@ export type {
   TransactionResult,
   NetworkConfig
 } from './types';
+
+// Export network configuration presets
+export { NETWORK_PRESETS, getNetworkConfig, listAvailableNetworks } from './networks';
