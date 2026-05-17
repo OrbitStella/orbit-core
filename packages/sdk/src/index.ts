@@ -415,3 +415,20 @@ export {
 
 // Export retry utility
 export { withRetry, type RetryOptions } from './retry';
+
+// Export TypeScript types for Soroban contracts
+export type {
+  SorobanContract,
+  ContractSpec,
+  ContractFunction,
+  FunctionArg,
+  ContractStruct,
+  StructField,
+  ContractEnum,
+  EnumValue,
+  ContractInvocation,
+  ContractDeployment,
+  ContractState,
+  TransactionResult,
+  NetworkConfig
+} from './types';
