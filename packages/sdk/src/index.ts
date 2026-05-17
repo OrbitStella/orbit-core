@@ -444,3 +444,6 @@ export type {
 
 // Export network configuration presets
 export { NETWORK_PRESETS, getNetworkConfig, listAvailableNetworks } from './networks';
+
+// Export fee estimation utilities
+export { estimateTransactionFee, calculateOptimalFee, validateFee, type FeeEstimate } from './fees';
