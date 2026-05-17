@@ -5,6 +5,7 @@ import chalk from 'chalk';
 import { deployCommand } from './commands/deploy';
 import { invokeCommand } from './commands/invoke';
 import { accountCommand } from './commands/account';
+import { statusCommand } from './commands/status';
 
 const program = new Command();
 
@@ -17,6 +18,7 @@ program
 program.addCommand(deployCommand);
 program.addCommand(invokeCommand);
 program.addCommand(accountCommand);
+program.addCommand(statusCommand);
 
 // Global error handler
 program.configureOutput({
