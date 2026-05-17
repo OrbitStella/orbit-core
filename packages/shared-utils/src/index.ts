@@ -92,3 +92,75 @@ export class Logger {
 export function createLogger(prefix: string, level?: LogLevel): Logger {
   return new Logger(prefix, level);
 }
+
+/**
+ * Environment validation helper
+ */
+export interface EnvVarSpec {
+  name: string;
+  required: boolean;
+  type: 'string' | 'number' | 'boolean' | 'url';
+  defaultValue?: string | number | boolean;
+}
+
+export interface ValidationResult {
+  valid: boolean;
+  errors: string[];
+  warnings: string[];
+}
+
+export function validateEnv(
+  specs: EnvVarSpec[],
+  env: Record<string, string | undefined> = process.env
+): ValidationResult {
+  const errors: string[] = [];
+  const warnings: string[] = [];
+
+  for (const spec of specs) {
+    const value = env[spec.name];
+
+    if (value === undefined) {
+      if (spec.required) {
+        errors.push(`Required environment variable ${spec.name} is not set`);
+      } else if (spec.defaultValue !== undefined) {
+        warnings.push(`Environment variable ${spec.name} is not set, using default value`);
+      }
+      continue;
+    }
+
+    // Type validation
+    switch (spec.type) {
+      case 'number':
+        if (isNaN(Number(value))) {
+          errors.push(`Environment variable ${spec.name} must be a number`);
+        }
+        break;
+      case 'boolean':
+        if (!['true', 'false', '1', '0'].includes(value.toLowerCase())) {
+          errors.push(`Environment variable ${spec.name} must be a boolean`);
+        }
+        break;
+      case 'url':
+        try {
+          new URL(value);
+        } catch {
+          errors.push(`Environment variable ${spec.name} must be a valid URL`);
+        }
+        break;
+    }
+  }
+
+  return {
+    valid: errors.length === 0,
+    errors,
+    warnings
+  };
+}
+
+export function getEnvVar(
+  name: string,
+  defaultValue?: string,
+  env: Record<string, string | undefined> = process.env
+): string {
+  return env[name] ?? defaultValue ?? '';
+}
