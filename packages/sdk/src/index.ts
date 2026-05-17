@@ -26,6 +26,7 @@ import {
   createTransactionError, 
   createValidationError 
 } from './errors';
+import { withRetry, type RetryOptions } from './retry';
 
 export interface OrbitClientConfig {
   networkUrl: string;
@@ -113,6 +114,7 @@ export class OrbitClient {
     options: {
       salt?: string;
       auth?: boolean;
+      retry?: RetryOptions;
     } = {}
   ): Promise<{ contractId: string; transactionId: string }> {
     const publicKey = signerKeypair.publicKey();
@@ -124,34 +126,41 @@ export class OrbitClient {
     });
 
     try {
-      // Load account
-      logger.debug('Loading account for deployment', { publicKey });
-      const account = await this.horizonServer.loadAccount(publicKey);
-      
-      // Create contract deployment transaction
-      logger.debug('Creating deployment transaction');
-      const contract = new Contract(wasmCode);
+      const deployOperation = async () => {
+        // Load account
+        logger.debug('Loading account for deployment', { publicKey });
+        const account = await this.horizonServer.loadAccount(publicKey);
+        
+        // Create contract deployment transaction
+        logger.debug('Creating deployment transaction');
+        const contract = new Contract(wasmCode);
 
-      const transaction = new TransactionBuilder(account, {
-        fee: BASE_FEE,
-        networkPassphrase: this.networkPassphrase,
-      })
-        .addOperation(
-          contract.deploy({
-            salt: options.salt ? nativeToScVal(options.salt) : undefined,
-            auth: options.auth
-          })
-        )
-        .setTimeout(30)
-        .build();
+        const transaction = new TransactionBuilder(account, {
+          fee: BASE_FEE,
+          networkPassphrase: this.networkPassphrase,
+        })
+          .addOperation(
+            contract.deploy({
+              salt: options.salt ? nativeToScVal(options.salt) : undefined,
+              auth: options.auth
+            })
+          )
+          .setTimeout(30)
+          .build();
 
-      // Sign transaction
-      logger.debug('Signing transaction');
-      transaction.sign(signerKeypair);
-      
-      // Submit transaction
-      logger.debug('Submitting deployment transaction');
-      const result = await this.horizonServer.submitTransaction(transaction);
+        // Sign transaction
+        logger.debug('Signing transaction');
+        transaction.sign(signerKeypair);
+        
+        // Submit transaction
+        logger.debug('Submitting deployment transaction');
+        const result = await this.horizonServer.submitTransaction(transaction);
+        return result;
+      };
+
+      const result = options.retry 
+        ? await withRetry(deployOperation, options.retry)
+        : await deployOperation();
       
       if (result.successful) {
         // Extract contract ID from result
